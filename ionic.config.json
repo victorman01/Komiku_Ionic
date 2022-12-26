@@ -1,0 +1,7 @@
+{
+  "name": "project_uas_hybrid",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
