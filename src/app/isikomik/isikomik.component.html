@@ -1,0 +1,147 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="favourite()" slot="end">
+      <div *ngIf="!fav" style="font-size: 20px;">Favourite<ion-icon color='danger' name="heart"></ion-icon></div>
+      <div *ngIf="fav" style="font-size: 20px;">Not Favourite<ion-icon name="heart-dislike"></ion-icon></div>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-card>
+  <p style="font-size:25px">Your Rating: {{rating_user}} <ion-icon *ngIf="rated" name="star" color="warning"></ion-icon>
+  </p>
+  <ion-button style="font-size: 8px;" (click)="rating(1)"><ion-icon name="star" color="warning"></ion-icon></ion-button>
+  <ion-button style="font-size: 8px;" (click)="rating(2)"><ion-icon name="star" color="warning"></ion-icon><ion-icon
+      name="star" color="warning"></ion-icon></ion-button>
+  <ion-button style="font-size: 8px;" (click)="rating(3)"><ion-icon name="star" color="warning"></ion-icon><ion-icon
+      name="star" color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon></ion-button>
+  <ion-button style="font-size: 8px;" (click)="rating(4)"><ion-icon name="star" color="warning"></ion-icon><ion-icon
+      name="star" color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon></ion-button>
+  <ion-button style="font-size: 8px;" (click)="rating(5)"><ion-icon name="star" color="warning"></ion-icon><ion-icon
+      name="star" color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon></ion-button>
+  <ion-button style="font-size: 8px;" (click)="rating(6)"><ion-icon name="star" color="warning"></ion-icon><ion-icon
+      name="star" color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon></ion-button>
+  <ion-button style="font-size: 8px;" (click)="rating(7)"><ion-icon name="star" color="warning"></ion-icon><ion-icon
+      name="star" color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon></ion-button>
+  <ion-button style="font-size: 8px;" (click)="rating(8)"><ion-icon name="star" color="warning"></ion-icon><ion-icon
+      name="star" color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon></ion-button>
+  <ion-button style="font-size: 8px;" (click)="rating(9)"><ion-icon name="star" color="warning"></ion-icon><ion-icon
+      name="star" color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon></ion-button>
+  <ion-button style="font-size: 8px;" (click)="rating(10)"><ion-icon name="star" color="warning"></ion-icon><ion-icon
+      name="star" color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon><ion-icon name="star" color="warning"></ion-icon><ion-icon name="star"
+      color="warning"></ion-icon></ion-button>
+</ion-card>
+
+<ion-card>
+  <h1 style="text-align: center;"><b>DETAILS COMIS</b></h1>
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>Title</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        {{judul}}
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header" color="light">
+        <ion-label>Author</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        {{autor}}
+      </div>
+    </ion-accordion>
+    <ion-accordion value="third">
+      <ion-item slot="header" color="light">
+        <ion-label>Published</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        {{published}}
+      </div>
+    </ion-accordion>
+    <ion-accordion value="fourth">
+      <ion-item slot="header" color="light">
+        <ion-label>Category</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content" *ngFor="let kategori of kategoris;">
+        {{kategori.name}}
+      </div>
+    </ion-accordion>
+    <ion-accordion value="fifth">
+      <ion-item slot="header" color="light">
+        <ion-label>Synopsis</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        {{sinopsis}}
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+</ion-card>
+
+<ion-card style="font-size:25px; text-align: center;"><b>READING SECTION</b></ion-card>
+
+<ion-card *ngFor="let isi of isikomik;let i = index">
+  <ion-img src={{isi.gambar}}></ion-img>
+</ion-card>
+
+<ion-card>
+  <h1><b>COMMENTS ({{comments.length}})</b></h1>
+</ion-card>
+
+<ion-card>
+  <ion-accordion-group>
+    <div *ngFor="let comment of comments">
+    <ion-accordion value="comment.komentar_id" (click)="showReplies(comment.komentar_id)">
+      <ion-item slot="header" color="light">
+        <ion-label>
+            <h2><b>{{ comment.name }}</b></h2>
+            <h3>{{ comment.komentar }}</h3>
+            <p>{{ comment.date }}</p>
+        </ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content" *ngIf="selectedCommentId == comment.komentar_id">
+        <ng-container>
+          <h1 *ngIf="replies.length > 0"><b>Replies ({{replies.length}})</b></h1>
+          <h1 *ngIf="replies == 0"><b>No replies yet</b></h1>
+          <ion-item *ngFor="let rep of replies">
+            <ion-label>
+              <h2><b>{{ rep.name }}</b></h2>
+              <h3>{{ rep.komentar }}</h3>
+              <p>{{ rep.date }}</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">{{root.name}}</ion-label>
+            <ion-input type="text" [(ngModel)]="newReply" placeholder="your reply"></ion-input>
+          </ion-item>
+          <ion-button (click)="addReply()">Send Reply</ion-button>
+        </ng-container>
+      </div>
+    </ion-accordion>
+  </div>
+  </ion-accordion-group>
+</ion-card>
+
+<ion-card>
+  <h1><b>Input Comment</b></h1>
+  <ion-item>
+    <ion-label position="stacked" style="font-size: 20px;">{{root.name}}</ion-label>
+    <ion-input type="text" [(ngModel)]="newKomen" placeholder="your comment"></ion-input>
+  </ion-item>
+  <ion-button (click)="addKomen()">Send Comment</ion-button>
+</ion-card>

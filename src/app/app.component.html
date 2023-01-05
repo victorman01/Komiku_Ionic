@@ -1,3 +1,83 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
+<!-- Login page -->
+<ion-app *ngIf="!user_id">
+  <<ion-content class="ion-padding">
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12" size-sm="8" size-md="6" size-lg="4">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title style="text-align: center;">Welcome to Komiku</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label position="stacked">Username</ion-label>
+                <ion-input type="text" [(ngModel)]="login_user"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Password</ion-label>
+                <ion-input type="password" [(ngModel)]="login_passwd"></ion-input>
+              </ion-item>
+              <ion-text color="danger" *ngIf="login_error">{{login_error}}</ion-text>
+            </ion-list>
+            <ion-button expand="block" (click)="login()">Log In</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    </ion-content>
+</ion-app>
+
+
+<!-- Menu Utama -->
+<ion-app *ngIf="user_id">
+  <ion-menu content-id="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Hello, {{name}}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-menu-toggle>
+        <ion-list>
+          <ion-item color="primary" routerLink="/">
+            <ion-icon name="home" slot="start"></ion-icon>
+            <ion-label>Home</ion-label>
+          </ion-item>
+          <ion-item color="primary" routerLink="/myfavourites">
+            <ion-icon name="heart" slot="start"></ion-icon>
+            <ion-label>My Favourites</ion-label>
+          </ion-item>
+          <ion-item color="primary" routerLink="/kategori">
+            <ion-icon name="folder" slot="start"></ion-icon>
+            <ion-label>Categories</ion-label>
+          </ion-item>
+          <ion-item color="primary" routerLink="/komik">
+            <ion-icon name="book" slot="start"></ion-icon>
+            <ion-label>Comics</ion-label>
+          </ion-item>
+          <ion-item color="danger" (click)='logout()' routerLink="/">
+            <ion-icon name="exit" slot="start"></ion-icon>
+            <ion-label>Logout</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-menu-toggle>
+    </ion-content>
+  </ion-menu>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button autoHide="false"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Komiku</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div id="main-content" *ngIf="!showComponent">
+      <app-mostpopularkomik></app-mostpopularkomik>
+      <app-mostratedkomik></app-mostratedkomik>
+      <app-newestkomik></app-newestkomik>
+    </div>
+    <router-outlet id="content" (activate)="showComponent = true" (deactivate)="showComponent = false">
+    </router-outlet>
+  </ion-content>
 </ion-app>
