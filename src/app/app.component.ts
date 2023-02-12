@@ -20,7 +20,7 @@ export class AppComponent {
   showComponent: any = "";
 
   login() {
-    if (this.login_user != "" && this.login_passwd != ""){
+    if (this.login_user != "" && this.login_passwd != "") {
       this.checkLogin(this.login_user, this.login_passwd).subscribe(
         (data) => {
           if (data['result'] == 'success') {
